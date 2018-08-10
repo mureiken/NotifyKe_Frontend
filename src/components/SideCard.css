@@ -1,0 +1,12 @@
+ .heading {
+ 	font-size: 1em;
+ }
+
+ .bg_jumbo {
+
+	  margin: 0;
+	  padding: 20px;
+	  background: #f7f9f9;  /* fallback for old browsers */
+	  /* background: -webkit-linear-gradient(to right, #17a2b8, #ffd700);   Chrome 10-25, Safari 5.1-6 */
+	  /* background: linear-gradient(to right, #17a2b8, #ffd700);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ }

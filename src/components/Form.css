@@ -1,0 +1,33 @@
+.slight-shadow {
+	-webkit-box-shadow: 9px 9px 34px 18px rgba(230,230,230,0.59);
+	-moz-box-shadow: 9px 9px 34px 18px rgba(230,230,230,0.59);
+    box-shadow: 9px 9px 34px 18px rgba(230,230,230,0.59);
+    padding:40px;
+	border-radius: 4px; 
+}
+
+.pref-legend{
+   	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 0px; 
+	width: 45%; 
+	border: 1px solid #ddd;
+	border-radius: 4px; 
+	padding: 5px 5px 5px 10px; 
+	background-color: #ffffff;
+}
+
+.pref-fieldset{
+	border: 1px solid #ddd !important;
+	margin: 0;
+	xmin-width: 0;
+	padding: 10px;       
+	position: relative;
+	border-radius:4px;
+	background-color:#f7f9f9;
+	padding-left:10px!important;
+}
+.css-10odw4q {
+	white-space: normal !important;
+}
+
