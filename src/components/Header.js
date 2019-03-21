@@ -55,7 +55,7 @@ class Header extends React.Component {
               }
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
-                  <Nav className="ml-auto" navbar>
+                  <Nav className="ml-auto" navbar style={{background: '#fff'}}>
                     <NavItem className="d-flex align-items-center">
                       <NavLink className="font-weight-bold" href="/about">About</NavLink>
                     </NavItem>
@@ -72,7 +72,6 @@ class Header extends React.Component {
                       <NavLink className="font-weight-bold" href="/contacts">Contacts</NavLink>
                     </NavItem>
                   </Nav>
-                  
                   </Collapse>
                 </Col>  
                 {

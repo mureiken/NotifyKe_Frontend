@@ -53,10 +53,9 @@ class SignInForm extends Component {
     const { loggingIn } = this.props;
     const { email, password, submitted, error } = this.state;
     return (
-      <div className="col-7 mx-auto" >
+      <div className="col-9 mx-auto" >
         <Col className="slight-shadow">
         {error && <p><span className="alert alert-danger">{error}</span></p>}
-        {<p><span className="alert alert-info">{'Please proceed to login with your email and password'}</span></p>}
         <h2>Sign In</h2>
         <Form name="form" onSubmit={this.handleSubmit}>
           <FormGroup>

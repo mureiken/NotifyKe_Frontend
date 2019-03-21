@@ -54,7 +54,7 @@ class PasswordResetRequestForm extends Component {
   render() {
     const { email, submitted } = this.state;
     return (
-      <div className="col-7 mx-auto" >
+      <div className="col-9 mx-auto" >
         <Col className="slight-shadow"> 
         {submitted && <p><span className="alert alert-info">Check your inbox to reset your password</span></p>}
         <h3>Password Recovery</h3>

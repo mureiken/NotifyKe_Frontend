@@ -6,13 +6,13 @@ export default class Footer extends React.Component {
   render() {
     return (
       <Fragment>
-       <footer className="pt-4 my-md-5 pt-md-5 border-top">
+       <footer className="pt-4 my-md-5 pt-md-5 mt-1 border-top">
         <div className="row">
-          <div className="col-12 col-md">
+          <div className="col-12 col-md ml-5">
             <small className="d-block mb-3 text-muted">Notification Authority of Kenya</small>
             <small className="d-block mb-3 text-muted">&copy;2018-2019</small>
           </div>
-          <div className="col-2 col-md">
+          <div className="col-12 col-md ml-5">
             <h5>Features</h5>
             <ul className="list-unstyled text-small">
               <li><a className="text-muted" href="/userguide#e">Email alerts</a></li>
@@ -20,7 +20,7 @@ export default class Footer extends React.Component {
               <li><a className="text-muted" href="/userguide#c">Filter TBT Preferences</a></li>
             </ul>
           </div>
-          <div className="col-3 col-md">
+          <div className="col-12 col-md ml-5">
             <h5>Resources</h5>
             <ul className="list-unstyled text-small">
               <li><a className="text-muted" href="/userguide">User Guide</a></li>
@@ -28,7 +28,7 @@ export default class Footer extends React.Component {
               <li><a className="text-muted" href="/faq">FAQs</a></li>
             </ul>
           </div>
-          <div className="col-3 col-md">
+          <div className="col-12 col-md ml-5">
             <h5>About</h5>
             <ul className="list-unstyled text-small">
               <li><a className="text-muted" href="">Team</a></li>
@@ -36,7 +36,7 @@ export default class Footer extends React.Component {
               <li><a className="text-muted" href="/privacypolicy">Privacy</a></li>
             </ul>
           </div>
-          <div className="col-1 col-md">
+          <div className="col-12 col-md ml-5">
             <img src={kebs_logo} width='200' alt='Kebs Logo' />
           </div>
         </div>
