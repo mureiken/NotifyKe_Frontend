@@ -4,7 +4,11 @@ export const userService = {
     register,
     login,
     logout,
-    getUserProfile
+    getUserNotifications,
+    getUserComments,
+    RetrieveUserDetails,
+    getUserProfile,
+    changePassword
 };
 
 
@@ -14,7 +18,6 @@ function register (email, password, profile) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email, password, profile})
     };
-
     return fetch ('http://localhost:8000/user/create/', requestOptions)
     .then(handleResponse)
     .then(user => {
@@ -48,6 +51,7 @@ function login(email, password) {
         });
 }
 
+
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
@@ -67,14 +71,77 @@ function getUserProfile(username) {
     });
 }
 
+function RetrieveUserDetails() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch('http://localhost:8000/user/update/' , requestOptions)
+    .then(handleResponse)
+    .then(profile => {
+        localStorage.setItem('user_details', JSON.stringify(profile));
+        return profile;
+    });
+}
+
+function getUserNotifications(user_id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch('http://localhost:8000/api/notifications/'+ user_id, requestOptions)
+    .then(handleResponse)
+    .then(notifications => {
+        localStorage.setItem('notifications', JSON.stringify(notifications));
+        return notifications;
+    });
+}
+
+function getUserComments(user_id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch('http://localhost:8000/api/comments/'+ user_id, requestOptions)
+    .then(handleResponse)
+    .then(comments => {
+        localStorage.setItem('notifications', JSON.stringify(comments));
+        return comments;
+    });
+}
+
+
+function changePassword (passwordChange) {
+    const  { Authorization }  = authHeader();
+    fetch('http://localhost:8000/user/update/', {
+        method: 'put',
+        headers: {Authorization, 'Content-Type': 'application/json'},
+        body: JSON.stringify(passwordChange)
+      })
+    .then(response => response.json())
+    .then(response => {
+         if (!response.ok) {
+            if (response.status === 401) {
+                return "You old password you entered is incorrect"
+            }
+        } else {
+            return response
+        }
+    })
+    .catch (err =>console.log(err));      
+}
+
 function handleResponse(response) {
     return response.json().then(data => {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                //logout();
-                //location.reload(true);
-                console.log(response.status);
+                logout();
+                window.location.reload(true);
+                // console.log(response.status);
             }
 
             const error = (data && data.error) || response.statusText;

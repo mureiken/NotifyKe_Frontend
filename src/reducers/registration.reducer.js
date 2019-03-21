@@ -6,34 +6,25 @@ let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loggedIn: true, user } : {};
 
 
-export const authentication = (state = initialState, action) => {
+export const registration = (state = initialState, action) => {
   switch (action.type) {
-    case userConstants.LOGIN_REQUEST:
+    case userConstants.REGISTRATION_REQUEST:
       return {
         loggingIn: true,
         user: action.user
       };
-    case userConstants.LOGIN_SUCCESS:
+    case userConstants.REGISTRATION_SUCCESS:
       return {
         loggedIn: true,
         user: action.user,
-        username: action.username,
+        username: action.user.email
       };
-    case userConstants.LOGIN_FAILURE:
+    case userConstants.REGISTRATION_FAILURE:
       return {};
     case userConstants.LOGOUT:
-      return {
-         loggedIn: false
-      };
+      return {};
     default:
       return state
   }
 }
 
-const persistConfig = {
-  key: 'auth',
-  storage: storage,
-  blacklist: ['loggingIn']
-};
-
-export default persistReducer(persistConfig, authentication);

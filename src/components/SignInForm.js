@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
    Col, Form,
-  FormGroup, Label, Input,
+  FormGroup, Label, Input, NavLink,
   Button
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -11,14 +11,14 @@ import './Form.css'
 class SignInForm extends Component {
   constructor(props) {
         super(props);
-
         // reset login status
         this.props.dispatch(userActions.logout());
 
         this.state = {
             email: '',
             password: '',
-            submitted: false
+            submitted: false,
+            error: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,20 +32,31 @@ class SignInForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
         this.setState({ submitted: true });
         const { email, password } = this.state;
+        
         const { dispatch } = this.props;
         if (email && password) {
             dispatch(userActions.login(email, password));
         }
+        
     }
+  componentDidUpdate() {
+    setTimeout(()=> {  
+        if (Object.keys(this.props.alert).length > 0 && this.props.alert.constructor === Object)  {
+           this.setState({ error: 'Could not log you in. Email or password is incorrect' });
+       }
+    }, 300)
+  }
+    
   render() {
     const { loggingIn } = this.props;
-    const { email, password, submitted } = this.state;
+    const { email, password, submitted, error } = this.state;
     return (
       <div className="col-7 mx-auto" >
         <Col className="slight-shadow">
+        {error && <p><span className="alert alert-danger">{error}</span></p>}
+        {<p><span className="alert alert-info">{'Please proceed to login with your email and password'}</span></p>}
         <h2>Sign In</h2>
         <Form name="form" onSubmit={this.handleSubmit}>
           <FormGroup>
@@ -59,7 +70,7 @@ class SignInForm extends Component {
               onChange={this.handleChange}
             />
             {submitted && !email &&
-              <div className="help-block">Email is required</div>
+              <div className="text-danger">Email is required</div>
             }
           </FormGroup>
           <FormGroup className={'form-group' + (submitted && !password ? ' has-error' : '')}>
@@ -73,15 +84,20 @@ class SignInForm extends Component {
               onChange={this.handleChange}
             />
             {submitted && !password &&
-                 <div className="help-block">Password is required</div>
+                 <div className="text-danger ">Password is required</div>
             }
           </FormGroup>
-          <Button className="mt-2" outline color="secondary">Log in</Button>
+          <Button className="mt-2" outline color="secondary">Log in</Button> 
           {loggingIn &&
               <img alt="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
           } 
+           
         </Form>
+        <Col style={{marginTop: 20, padding: 0}}>
+          <NavLink href="/passwordrecovery" style={{margin: 0, padding: 0}} className="text-muted">Forgot Password?</NavLink>
+        </Col>
       </Col>
+
     </div>
     );
   }
@@ -90,7 +106,7 @@ class SignInForm extends Component {
 function mapStateToProps(state) {
     const { loggingIn } = state.authentication;
     return {
-        loggingIn
+        loggingIn,
     };
 }
 

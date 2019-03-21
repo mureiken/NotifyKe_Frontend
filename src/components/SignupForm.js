@@ -37,7 +37,8 @@ class SignupForm extends Component {
             countries: [],
             ics_products: [],
             hs_products: [],
-            profile:{hs_products: '', ics_products: ''}
+            profile:{hs_products: '', ics_products: ''},
+            error: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -72,7 +73,10 @@ class SignupForm extends Component {
         ics_products: icsArray
       }
       this.setState({profile: profile });
-
+      if (this.props.alert)  {
+        this.setState({error: 'User with this email already exists.'});
+    }
+      
       const { dispatch } = this.props;
       if (email && password) {
           dispatch(userActions.register(email, password, profile));
@@ -81,11 +85,13 @@ class SignupForm extends Component {
     }
    
   render() { 
-    const { loggingIn } = this.props;
-    const { email, password, submitted } = this.state;
+    const {loggingIn } = this.props;
+    const { email, password, submitted, error } = this.state;
+    console.log(error);
     return (
       <Container className="slight-shadow">
-        <h2>Sign Up</h2>
+      {error && <p><span className="alert alert-warning">{error}</span></p>}
+        <h2>Sign Up </h2>
         <Form name="form" onSubmit={this.handleSubmit}>
           <Col>
             <FormGroup>
@@ -100,7 +106,7 @@ class SignupForm extends Component {
               />
             </FormGroup>
             {submitted && !email &&
-              <div className="help-block">Email is required</div>
+              <div className="text-danger">Email is required</div>
             }
           </Col>
           <Col>
@@ -115,7 +121,7 @@ class SignupForm extends Component {
               />
             </FormGroup>
             {submitted && !password &&
-                 <div className="help-block">Password is required</div>
+                 <div className="text-danger">Password is required</div>
             }
             <fieldset className="pref-fieldset">
               <legend className="pref-legend"><span className="glyphicon-class"></span>Filter preferences</legend>
