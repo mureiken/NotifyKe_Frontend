@@ -57,7 +57,7 @@ class MyAccountForm extends Component {
 
     const  {Authorization}  = authHeader();
      setTimeout(()=> {
-	    fetch('http://localhost:8000/user/update/', {
+	    fetch(`${process.env.REACT_APP_DJANGO_API}/user/update/`, {
 	        method: 'put',
 	        headers: {Authorization, 'Content-Type': 'application/json'},
 	        body: JSON.stringify(updated_user_details)

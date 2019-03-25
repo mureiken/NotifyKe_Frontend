@@ -21,7 +21,7 @@ class PasswordResetForm extends Component {
 
     passwordReset(passwordResetData) {
       console.log('hit here');
-      fetch('http://localhost:8000/user/rest-auth/password/reset/confirm/', {
+      fetch(`${process.env.REACT_APP_DJANGO_API}/user/rest-auth/password/reset/confirm/`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(passwordResetData)

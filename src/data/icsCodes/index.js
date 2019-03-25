@@ -1,5 +1,5 @@
 export const ICSCodes = (input) => {
-  return fetch(`http://localhost:4000/icscodes/${input}`)
+  return fetch(`${process.env.REACT_APP_NODE_API}/icscodes/${input}`)
       .then((response) => response.json())
       .then((json) => {
          return json.filter(i => i.label.toLowerCase().includes(input.toLowerCase()));

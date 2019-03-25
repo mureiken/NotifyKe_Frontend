@@ -18,7 +18,7 @@ function register (email, password, profile) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email, password, profile})
     };
-    return fetch ('http://localhost:8000/user/create/', requestOptions)
+    return fetch (`${process.env.REACT_APP_DJANGO_API}/user/create/`, requestOptions)
     .then(handleResponse)
     .then(user => {
             // login successful if there's a jwt token in the response
@@ -38,7 +38,7 @@ function login(email, password) {
         body: JSON.stringify({ email, password })
     };
 
-    return fetch('http://localhost:8000/user/obtain_token/', requestOptions)
+    return fetch(`${process.env.REACT_APP_DJANGO_API}/user/obtain_token/`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -46,7 +46,6 @@ function login(email, password) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }
-
             return user;
         });
 }
@@ -63,7 +62,7 @@ function getUserProfile(username) {
         headers: authHeader()
     };
 
-    return fetch('http://localhost:8000/api/profile/'+ username, requestOptions)
+    return fetch(`${process.env.REACT_APP_DJANGO_API}/api/profile/`+ username, requestOptions)
     .then(handleResponse)
     .then(profile => {
         localStorage.setItem('profile', JSON.stringify(profile));
@@ -77,7 +76,7 @@ function RetrieveUserDetails() {
         headers: authHeader()
     };
 
-    return fetch('http://localhost:8000/user/update/' , requestOptions)
+    return fetch(`${process.env.REACT_APP_DJANGO_API}/user/update/` , requestOptions)
     .then(handleResponse)
     .then(profile => {
         localStorage.setItem('user_details', JSON.stringify(profile));
@@ -91,7 +90,7 @@ function getUserNotifications(user_id) {
         headers: authHeader()
     };
 
-    return fetch('http://localhost:8000/api/notifications/'+ user_id, requestOptions)
+    return fetch(`${process.env.REACT_APP_DJANGO_API}/api/notifications/`+ user_id, requestOptions)
     .then(handleResponse)
     .then(notifications => {
         localStorage.setItem('notifications', JSON.stringify(notifications));
@@ -105,7 +104,7 @@ function getUserComments(user_id) {
         headers: authHeader()
     };
 
-    return fetch('http://localhost:8000/api/comments/'+ user_id, requestOptions)
+    return fetch(`${process.env.REACT_APP_DJANGO_API}/api/comments/`+ user_id, requestOptions)
     .then(handleResponse)
     .then(comments => {
         localStorage.setItem('notifications', JSON.stringify(comments));
@@ -116,7 +115,7 @@ function getUserComments(user_id) {
 
 function changePassword (passwordChange) {
     const  { Authorization }  = authHeader();
-    fetch('http://localhost:8000/user/update/', {
+    fetch(`${process.env.REACT_APP_DJANGO_API}/user/update/`, {
         method: 'put',
         headers: {Authorization, 'Content-Type': 'application/json'},
         body: JSON.stringify(passwordChange)

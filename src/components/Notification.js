@@ -80,7 +80,7 @@ class Notification extends React.Component {
     }
     if (comment !=='' && commentFile !== null ) {
       formData.append('user',user);
-      fetch('http://localhost:8000/api/comment/', {
+      fetch(`${process.env.REACT_APP_DJANGO_API}/api/comment/`, {
         method: 'POST',
         headers: {  Accept: 'application/json, text/plain, */*',},
         body:formData,
@@ -138,8 +138,8 @@ class Notification extends React.Component {
           <Table striped>
             <thead style={{background: 'rgba(201, 76, 76, 0.3)'}}>
               <tr className='d-flex'>
-                <th className='col-1'>Notifying Member</th>
-                <th className='col-4'>Title, symbol & Description</th>
+                <th className='col-2'>Notifying Member</th>
+                <th className='col-3'>Title, symbol & Description</th>
                 <th className='col-3'>Products</th>
                 <th className='col-2'>Comment Deadline</th>
                 <th className='col-1'>Links</th>
@@ -158,10 +158,10 @@ class Notification extends React.Component {
                     const spanish_document_link = document_link_es[Object.keys(document_link_es)[0]];
                     return(
                         <tr key={i} id={i} className='d-flex'>
-                          <td className='col-1'>
+                          <td className='col-2'>
                               {this.props.tbt_notifications[i].notifying_member}
                            </td>
-                            <td className='col-4'>
+                            <td className='col-3'>
                              <strong>Notification:</strong> {this.props.tbt_notifications[i].document_symbol} <br />
                                <strong>Issue Date:</strong> {this.props.tbt_notifications[i].date_of_distribution}<br />
                                <strong>Title:</strong> {this.stripTags(this.props.tbt_notifications[i].notified_document_details.notified_document_title)}<br />
@@ -254,9 +254,9 @@ class Notification extends React.Component {
                               </Modal>
                             </td> 
                             <td className='col-1'>
-                             <a href={english_document_link}>EN</a>&nbsp;
-                             <a href={french_document_link}>FR</a>&nbsp;
-                             <a href={spanish_document_link}>ES</a>&nbsp;
+                             <div><a href={english_document_link}>EN</a></div>
+                             <div><a href={french_document_link}>FR</a></div>
+                             <div><a href={spanish_document_link}>ES</a></div>
                             </td> 
                             <td className='col-1'>
                              <a href={this.props.tbt_notifications[i].notified_document_links.member_attachment_links}>Full Text</a>

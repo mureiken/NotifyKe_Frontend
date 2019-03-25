@@ -19,7 +19,7 @@ class PasswordResetRequestForm extends Component {
     }
 
     passwordReset (email) {
-    fetch('http://localhost:8000/user/rest-auth/password/reset/', {
+    fetch(`${process.env.REACT_APP_DJANGO_API}/user/rest-auth/password/reset/`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(email)

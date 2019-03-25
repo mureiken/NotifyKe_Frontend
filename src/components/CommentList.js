@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'; 
-import { Row, ListGroup,  ListGroupItem, Alert, tbody, thead, th, Table } from 'reactstrap';
+import { Row, ListGroup,  ListGroupItem, tbody, thead, th, Table } from 'reactstrap';
 import Comment from './Comments';
 import './LatestNotifications.css';
 
