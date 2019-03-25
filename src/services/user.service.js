@@ -11,7 +11,6 @@ export const userService = {
     changePassword
 };
 
-
 function register (email, password, profile) {
     const requestOptions = {
         method: 'POST',
