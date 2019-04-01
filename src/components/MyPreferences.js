@@ -31,7 +31,7 @@ class MyPreferences extends Component {
         super(props);
         const { countries, hs_products, ics_products } = this.props.profile.profile
         this.state = {
-        	email: '',
+        	  email: '',
             countries: countries,
             hs_products: hs_products,
             ics_products: ics_products,
@@ -60,7 +60,7 @@ class MyPreferences extends Component {
 	    	this.getCountries();
 	    	this.getICSProducts();
 	    	this.getHSProducts();
-	    },150);	
+	    },200);	
 
  	 }
 
@@ -224,25 +224,25 @@ class MyPreferences extends Component {
 	      </div>
 	      <div>
 	      	<Row>
-                <Col sm="6">
+              <Col sm="6">
                   <Card body>
                     <CardTitle>Country Preferences</CardTitle>
-				      {current_countries}
-				    </Card>
-				  </Col>
-				  <Col sm="6">
-                  	<Card body>
-                    	<CardTitle>ICS Products Preferences</CardTitle>
-				      	{current_ics_products}
-				    </Card>
-				  </Col>
-				  <Col sm="6" style={{ marginTop: 20, marginBottom: 30 }}>
+				                {current_countries}
+				            </Card>
+				      </Col>
+				      <Col sm="6">
+                  <Card body>
+                    <CardTitle>ICS Products Preferences</CardTitle>
+				      	         {current_ics_products}
+				          </Card>
+				      </Col>
+				      <Col sm="6" style={{ marginTop: 20, marginBottom: 30 }}>
 	                  <Card body>
 	                    	<CardTitle>HS Products Preferences</CardTitle>
-					      	{current_hs_products}
-					   </Card>
-				  	</Col>
-				</Row>
+					      	          {current_hs_products}
+					           </Card>
+				  	   </Col>
+				    </Row>
 	      </div>
 	      <hr />
 	      <Form name="form" method='post' onSubmit={this.handleSubmit}>
@@ -306,8 +306,8 @@ function mapStateToProps(state) {
 
     return {
     	user,
-        user_info,
-        profile
+      user_info,
+      profile
     };
 }
 const connectedMyPreferences = connect(mapStateToProps)(MyPreferences);
