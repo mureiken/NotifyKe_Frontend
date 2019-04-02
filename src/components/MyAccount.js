@@ -26,16 +26,17 @@ class MyAccountForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    componentDidMount() {
-    	setTimeout(()=> {
-	    	const { email, first_name, last_name } = this.props.user_info
-	    	this.setState({
-	    		email: email,
-	            first_name: first_name,
-	            last_name: last_name,
-	    	})
-	    	},295);	    
-    }
+
+    componentWillReceiveProps({ user_info }) {
+	    if(user_info && user_info.email !== undefined && user_info.first_name !== undefined && user_info.last_name !== undefined) {
+	       this.setState({
+	           email: user_info.email,
+	           first_name: user_info.first_name,
+	           last_name: user_info.last_name,
+	       })
+	    }
+	}
+
    handleChange(e) {
       const { name, value } = e.target;
       this.setState({ [name]: value });
