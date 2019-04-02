@@ -53,16 +53,17 @@ class MyPreferences extends Component {
         this.onDismiss = this.onDismiss.bind(this);
     }
 
-	componentDidMount() {
-		setTimeout(()=> {
-	    	const { email } = this.props.user_info
-	    	this.setState({ email: email });
-	    	this.getCountries();
-	    	this.getICSProducts();
-	    	this.getHSProducts();
-	    },295);	
 
- 	 }
+  componentWillReceiveProps({ user_info }) {
+    if(user_info && user_info.email !==undefined) {
+       this.setState({
+           email: user_info.email,
+       })
+      this.getCountries();
+      this.getICSProducts();
+      this.getHSProducts();
+    }
+}
 
  	removeItem(oldItem, type) { 
  		switch(type) {
