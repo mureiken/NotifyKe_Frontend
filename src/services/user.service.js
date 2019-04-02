@@ -77,9 +77,9 @@ function RetrieveUserDetails() {
 
     return fetch(`${process.env.REACT_APP_DJANGO_API}/user/update/` , requestOptions)
     .then(handleResponse)
-    .then(profile => {
-        localStorage.setItem('user_details', JSON.stringify(profile));
-        return profile;
+    .then(user => {
+        localStorage.setItem('user_details', JSON.stringify(user));
+        return user;
     });
 }
 

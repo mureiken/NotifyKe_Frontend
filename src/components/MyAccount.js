@@ -34,7 +34,7 @@ class MyAccountForm extends Component {
 	            first_name: first_name,
 	            last_name: last_name,
 	    	})
-	    	},100);	    
+	    	},295);	    
     }
    handleChange(e) {
       const { name, value } = e.target;

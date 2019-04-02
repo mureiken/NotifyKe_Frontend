@@ -60,7 +60,7 @@ class MyPreferences extends Component {
 	    	this.getCountries();
 	    	this.getICSProducts();
 	    	this.getHSProducts();
-	    },200);	
+	    },295);	
 
  	 }
 
