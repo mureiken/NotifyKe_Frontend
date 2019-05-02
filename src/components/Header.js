@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import logo from '../Logo.png';
+import Avatar from 'react-avatar';
 
 import {
   Container, Row, Col, Collapse, Navbar, NavbarToggler, Nav,
@@ -36,7 +37,6 @@ class Header extends React.Component {
 }
 
   render() {
-    const AVATAR = 'https://www.gravatar.com/avatar/429e504af19fc3e1cfa5c4326ef3394c?s=240&d=mm&r=pg';
     return (
       <header>
          <Navbar fixed="top" color="light" light expand="md" className="border-bottom border-gray bg-white" style={{ height: 80 }}>
@@ -84,7 +84,7 @@ class Header extends React.Component {
                       </div>
                       <div className="d-inline-block" >
                           <NavLink className="font-weight-bold" href="/myaccount">
-                             <img src={AVATAR} alt={this.props.username} title= {this.props.username} className="img-fluid rounded-circle" style={{ width: 36 }} />
+                             <Avatar skypeId="sitebase" size={40} round="20px" color='#808080' />
                           </NavLink>
                       </div>
                       <div className="d-inline-block mt-2">
@@ -105,11 +105,13 @@ class Header extends React.Component {
   }
 }
 function mapStateToProps(state) {
-    const { authentication, notifications } = state;
+    const { userdetails, authentication, notifications } = state;
     const { loggedIn, username } = authentication;
+    const { user_info } = userdetails;
     return {
         loggedIn,
         username,
+        user_info,
         notifications
     };
 }
