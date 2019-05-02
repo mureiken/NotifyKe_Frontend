@@ -78,7 +78,7 @@ class Notification extends React.Component {
     if (commentFile) {
       formData.append('comment_file',commentFile);
     }
-    if (comment !=='' && commentFile !== null ) {
+    if (comment !=='' || commentFile !== null ) {
       formData.append('user',user);
       fetch(`${process.env.REACT_APP_DJANGO_API}/api/comment/`, {
         method: 'POST',
@@ -151,11 +151,21 @@ class Notification extends React.Component {
                   this.props.tbt_notifications.map((values,i)=>{
                     const value = i;
                     const document_link_en = this.props.tbt_notifications[i].document_online_links.url[0];
-                    const english_document_link = document_link_en[Object.keys(document_link_en)[0]];
                     const document_link_fr = this.props.tbt_notifications[i].document_online_links.url[1];
-                    const french_document_link = document_link_fr[Object.keys(document_link_fr)[0]];
                     const document_link_es = this.props.tbt_notifications[i].document_online_links.url[2];
-                    const spanish_document_link = document_link_es[Object.keys(document_link_es)[0]];
+                    let  english_document_link = '#';
+                    let french_document_link = '#';
+                    let spanish_document_link ='#';
+                    if (document_link_en) { 
+                       english_document_link = document_link_en[Object.keys(document_link_en)[0]];
+                    }
+                    if (document_link_fr) {
+                      french_document_link = document_link_fr[Object.keys(document_link_fr)[0]];
+                    }
+                    if (document_link_es){
+                      spanish_document_link = document_link_es[Object.keys(document_link_es)[0]];
+                    }
+                    
                     return(
                         <tr key={i} id={i} className='d-flex'>
                           <td className='col-2'>
@@ -186,15 +196,21 @@ class Notification extends React.Component {
                               </Collapse>
                             </td>
                             <td className='col-3'>
-                              {
-                                this.props.tbt_notifications[i].ics_products.ics.isArray ?
-                                  this.Arrays(this.props.tbt_notifications[i].ics_products.ics, 'ICS Products')
-                                 : <dl>
-                                   <Fragment>
-                                       <dt>{this.props.tbt_notifications[i].ics_products.ics.code}</dt>
-                                       <dd>{this.props.tbt_notifications[i].ics_products.ics.name}</dd>
-                                     </Fragment>
-                                 </dl>
+                              { 
+                                this.props.tbt_notifications[i].ics_products ?
+                                  this.props.tbt_notifications[i].ics_products.ics.isArray ?
+                                    this.Arrays(this.props.tbt_notifications[i].ics_products.ics, 'ICS Products')
+                                   : <dl>
+                                     <Fragment>
+                                         <dt>{this.props.tbt_notifications[i].ics_products.ics.code}</dt>
+                                         <dd>{this.props.tbt_notifications[i].ics_products.ics.name}</dd>
+                                       </Fragment>
+                                   </dl>
+                                : <dl>
+                                     <Fragment>
+                                         
+                                       </Fragment>
+                                   </dl>
                               }
                             </td>
                             <td className='col-2'>
