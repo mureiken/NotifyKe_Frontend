@@ -31,9 +31,10 @@ export default class Footer extends React.Component {
           <div className="col-12 col-md ml-5">
             <h5>About</h5>
             <ul className="list-unstyled text-small">
-              <li><a href="#" className="text-muted">Team</a></li>
-              <li><a href="#" className="text-muted" >Locations</a></li>
-              <li><a className="text-muted" href="/privacypolicy">Privacy</a></li>
+              <li><a href="/about" className="text-muted">About</a></li>
+              <li><a href="/contacts" className="text-muted" >Contacts</a></li>
+              <li><a href="http://www.kebs.org" target="_blank" className="text-muted" >KEBS</a></li>
+              <li><a href="/privacypolicy" className="text-muted">Privacy</a></li>
             </ul>
           </div>
           <div className="col-12 col-md ml-5">

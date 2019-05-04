@@ -15,6 +15,7 @@ import Faq from './components/static/Faq';
 import UserGuide from './components/static/UserGuide';
 import Resources from './components/static/Resources';
 import Privacy from './components/static/PrivacyPolicy';
+import Contacts from './components/static/Contacts';
 
 import {Container} from 'reactstrap';
 import ErrorBoundary from './components/ErrorBoundry';
@@ -27,6 +28,23 @@ import PasswordResetForm from './components/PasswordResetForm';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+    ReactGA.initialize('UA-139553358-1');
+    ReactGA.pageview('/');
+    ReactGA.pageview('/login');
+    ReactGA.pageview('/profile');
+    ReactGA.pageview('/mypreferences');
+    ReactGA.pageview('/myaccount');
+    ReactGA.pageview('/changepassword');
+    ReactGA.pageview('/about');
+    ReactGA.pageview('/faq');
+    ReactGA.pageview('/resources');
+    ReactGA.pageview('/contacts');
+    ReactGA.pageview('/privacypolicy');
+    ReactGA.pageview('/userguide');
+}
 
 class App extends React.Component  {
   constructor(props) {
@@ -80,6 +98,7 @@ class App extends React.Component  {
                       <Route path="/userguide" component={UserGuide} />
                       <Route path="/resources" component={Resources} />
                       <Route path="/privacypolicy" component={Privacy} />
+                      <Route path="/contacts" component={Contacts} />
                     </div>
                   </Router>
                   <Footer />
