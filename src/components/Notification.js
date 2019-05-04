@@ -97,8 +97,12 @@ class Notification extends React.Component {
   }
 
   stripTags (OriginalString) { 
-    let strippedString = OriginalString.replace(/(<([^>]+)>)/ig,"");
-    return strippedString;
+    if (OriginalString !=null) {
+      let strippedString = OriginalString.replace(/(<([^>]+)>)/ig,"");
+      return strippedString;
+    } else {
+      return '';
+    }
   }
   Arrays(props, name) {
     const outerDivStyle = {
