@@ -193,7 +193,7 @@ class Notification extends React.Component {
                                <Collapse isOpen={(i===this.state.linkid) ? this.state.collapse: false}>
                                   <Card>
                                     <CardBody>
-                                    <a id={'#'+i}> </a>
+                                    <a href={'#'+i}> </a>
                                     {this.stripTags(this.props.tbt_notifications[i].description_of_content)}
                                     </CardBody>
                                   </Card>

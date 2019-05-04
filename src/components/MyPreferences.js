@@ -112,7 +112,7 @@ class MyPreferences extends Component {
 		const { countries } = this.state;
 		this.setState({
   		current_countries: countries.map((item)=>(
-  			<a  style={{backgroundColor:'transparent', borderColor: 'transparent', padding: 0}} key={item} onClick={()=>this.removeItem(item, 'countries')} >
+  			<a style={{backgroundColor:'transparent', borderColor: 'transparent', padding: 0}} key={item} onClick={()=>this.removeItem(item, 'countries')} >
   				<UncontrolledAlert key={item} id={item} color="info">
   					{item}
   				</UncontrolledAlert>
