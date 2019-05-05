@@ -30,10 +30,9 @@ import Header from './components/Header';
 
 import ReactGA from 'react-ga';
 
-function initializeReactGA() {
-    ReactGA.initialize('UA-139553358-1');
-    history.listen(location => ReactGA.pageview(location.pathname));
-}
+
+ReactGA.initialize('UA-139553358-1');
+history.listen(location => ReactGA.pageview(location.pathname));
 
 class App extends React.Component  {
   constructor(props) {
