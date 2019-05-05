@@ -32,18 +32,7 @@ import ReactGA from 'react-ga';
 
 function initializeReactGA() {
     ReactGA.initialize('UA-139553358-1');
-    ReactGA.pageview('/');
-    ReactGA.pageview('/login');
-    ReactGA.pageview('/profile');
-    ReactGA.pageview('/mypreferences');
-    ReactGA.pageview('/myaccount');
-    ReactGA.pageview('/changepassword');
-    ReactGA.pageview('/about');
-    ReactGA.pageview('/faq');
-    ReactGA.pageview('/resources');
-    ReactGA.pageview('/contacts');
-    ReactGA.pageview('/privacypolicy');
-    ReactGA.pageview('/userguide');
+    history.listen(location => ReactGA.pageview(location.pathname));
 }
 
 class App extends React.Component  {
